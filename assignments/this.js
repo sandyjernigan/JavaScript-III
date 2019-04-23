@@ -12,9 +12,9 @@
 
 // Principle 1 - Window Binding
 
-    console.log(this === window); //window defined in browser
+    //console.log(this === window); //window defined in browser
     function cb() {
-        console.log(this);
+        //console.log(this);
     } // this refers to the window/global object
     cb();
 
@@ -24,11 +24,23 @@
         name: "John",
         sayHello: function(name) {
             console.log(`Hello, my name is ${this.name}.`);
-        } // this refers to the object
-    }
+        }
+    } // this refers to the object the function is in
     myObject.sayHello();
 
 // Principle 3 - New Binding
 
+    function Parent(person) {
+        this.name = person.name;
+        this.says = " says I am a Parent."
+        this.speak = function() {
+            console.log(this.name + this.says);
+        } 
+    } // this refers to the object passed into the function
+    const joe = new Parent({name: 'Joe'});
+    joe.speak(); 
+
 // Principle 4 - Explicit Binding
+
+
 
