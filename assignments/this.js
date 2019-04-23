@@ -12,10 +12,13 @@
 
 // Principle 1 - Window Binding
 
-    //console.log(this === window); //window defined in browser
+    console.log(this === window); //window defined in browser
+    // this will point to the window unless otherwise specificied or "use strict"
+
     function cb() {
-        //console.log(this);
-    } // this refers to the window/global object
+        "use strict";
+        console.log(this);
+    }   // this is undefined as it is using 'strict' to prevent binding to window.
     cb();
 
 // Principle 2 - Implicit Binding
@@ -25,7 +28,7 @@
         sayHello: function(name) {
             console.log(`Hello, my name is ${this.name}.`);
         }
-    } // this refers to the object the function is in
+    } // this refers to the object left of the dot where the function is called
     myObject.sayHello();
 
 // Principle 3 - New Binding
@@ -36,11 +39,27 @@
         this.speak = function() {
             console.log(this.name + this.says);
         } 
-    } // this refers to the object passed into the function
+    } // this refers to the NEW object passed into the function
     const joe = new Parent({name: 'Joe'});
     joe.speak(); 
 
 // Principle 4 - Explicit Binding
 
+const employee1 = {
+    "name": "Josh",
+    "age": 35,
+    "job": "HBA Rep"
+}
 
+const employee2 = {
+    "name": "Emma",
+    "age": 28,
+    "job": ["Stocker", "Teacher"]
+}
 
+function employeeList(name, age, job) {
+    return `${this.name} is ${this.age} and has the job title ${this.job}.`;
+}
+
+console.log(employeeList.call(employee1));
+console.log(employeeList.apply(employee2));
