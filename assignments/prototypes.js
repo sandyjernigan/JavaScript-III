@@ -151,13 +151,18 @@ Humanoid.prototype.greet = function() {
 
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   
-    Hero.prototype.lightsRevenge = function() {
+    function attack(person, damageDone) {
+      person.healthPoints = person.healthPoints - damageDone;
+      console.log(`${person.name} now has ${person.healthPoints} health.`)
+    }
+
+    Hero.prototype.lightsRevenge = function(person) {
       damageDone = Math.floor((Math.random() * 6) + 1);
       console.log(`${this.name} attacks with The Light's Revenge for ${damageDone}.`);
       return damageDone;
     };
 
-    Villain.prototype.howlingShards = function() {
+    Villain.prototype.howlingShards = function(person) {
       damageDone = Math.floor((Math.random() * 5) + 1);
       console.log(`${this.name} attacks with Howling Shards for ${damageDone}.`);
       return damageDone;
@@ -165,38 +170,42 @@ Humanoid.prototype.greet = function() {
 
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
 
-  // Hero
-  const knight = new Hero({
-    createdAt: new Date(),
-    dimensions: {
-      length: 2,
-      width: 1,
-      height: 5,
-    },
-    healthPoints: 16,
-    name: 'Mark',
-    team: 'Of the Light',
-    weapons: [
-      'Mace',
-      'Shield',
-    ],
-    language: 'english',
-  });
-  
-  // Villain
-  const wraith = new Villain({
-    createdAt: new Date(),
-    dimensions: {
-      length: 3,
-      width: 1,
-      height: 7,
-    },
-    healthPoints: 12,
-    name: 'Manifestation',
-    team: 'spirits',
-    weapons: [
-      'dagger',
-      'howl',
-    ],
-    language: 'ghostspeak',
-  });
+    // Hero
+    const knight = new Hero({
+      createdAt: new Date(),
+      dimensions: {
+        length: 2,
+        width: 1,
+        height: 5,
+      },
+      healthPoints: 16,
+      name: 'Mark',
+      team: 'Of the Light',
+      weapons: [
+        'Mace',
+        'Shield',
+      ],
+      language: 'Common Tongue',
+    });
+    
+    // Villain
+    const wraith = new Villain({
+      createdAt: new Date(),
+      dimensions: {
+        length: 3,
+        width: 1,
+        height: 7,
+      },
+      healthPoints: 12,
+      name: 'Manifestation',
+      team: 'spirits',
+      weapons: [
+        'dagger',
+        'howl',
+      ],
+      language: 'Ghost Speech',
+    });
+
+    console.log(`One day our hero, ${knight.name}, is attacked by ${wraith.name}.`);
+    attack(knight, wraith.howlingShards());
+    attack(wraith, knight.lightsRevenge());
