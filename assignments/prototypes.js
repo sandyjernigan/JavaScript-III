@@ -17,9 +17,9 @@
 */
 
   function GameObject(attributes){
-    this.createdAt = attributes.createdAt,
-    this.name = attributes.name,
-    this.dimensions = attributes.dimensions,
+    this.createdAt = attributes.createdAt;
+    this.name = attributes.name;
+    this.dimensions = attributes.dimensions;
   }
 
   GameObject.prototype.destroy = function() {
@@ -34,7 +34,8 @@
 */
 
   function CharacterStats(attributes){
-    this.healthPoints = attributes.healthPoints
+    GameObject.call(this, attributes);
+    this.healthPoints = attributes.healthPoints;
   }
 
   CharacterStats.prototype.takeDamage = function() {
@@ -54,25 +55,17 @@
 */
 
 function Humanoid(attributes){
-
-  this.team = attributes.team,
-  this.weapons = attributes.weapons,
-  this.language = attributes.language,
+  CharacterStats.call(this, attributes);
+  this.team = attributes.team;
+  this.weapons = attributes.weapons;
+  this.language = attributes.language;
 }
 
 Humanoid.prototype.greet = function() {
   return `${this.name} offers a greeting in ${this.name}.`
 }
 
-/*
-  dimensions: {
-    length: 2,
-    width: 1,
-    height: 1,
-  },
-  healthPoints: 5,
-  name: 'Bruce',
-*/
+Humanoid.prototype = Object.create(CharacterStats.prototype);
  
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
