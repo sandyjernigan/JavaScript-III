@@ -157,12 +157,46 @@ Humanoid.prototype.greet = function() {
       return damageDone;
     };
 
-    Villain.prototype.poisonGooSpray = function() {
+    Villain.prototype.howlingShards = function() {
       damageDone = Math.floor((Math.random() * 5) + 1);
-      console.log(`${this.name} attacks with Poison Goo Spray for ${damageDone}.`);
+      console.log(`${this.name} attacks with Howling Shards for ${damageDone}.`);
       return damageDone;
     };
 
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
 
+  // Hero
+  const knight = new Hero({
+    createdAt: new Date(),
+    dimensions: {
+      length: 2,
+      width: 1,
+      height: 5,
+    },
+    healthPoints: 16,
+    name: 'Mark',
+    team: 'Of the Light',
+    weapons: [
+      'Mace',
+      'Shield',
+    ],
+    language: 'english',
+  });
   
+  // Villain
+  const wraith = new Villain({
+    createdAt: new Date(),
+    dimensions: {
+      length: 3,
+      width: 1,
+      height: 7,
+    },
+    healthPoints: 12,
+    name: 'Manifestation',
+    team: 'spirits',
+    weapons: [
+      'dagger',
+      'howl',
+    ],
+    language: 'ghostspeak',
+  });
