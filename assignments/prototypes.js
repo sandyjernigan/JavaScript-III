@@ -38,11 +38,10 @@
     this.healthPoints = attributes.healthPoints;
   }
 
+  CharacterStats.prototype = Object.create(GameObject.prototype); // inherit
   CharacterStats.prototype.takeDamage = function() {
     return `${this.name} took damage.`
-  }
-
-  CharacterStats.prototype = Object.create(GameObject.prototype);
+  };
 
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
@@ -61,11 +60,10 @@ function Humanoid(attributes){
   this.language = attributes.language;
 }
 
+Humanoid.prototype = Object.create(CharacterStats.prototype); // inherit
 Humanoid.prototype.greet = function() {
   return `${this.name} offers a greeting in ${this.language}.`;
-}
-
-Humanoid.prototype = Object.create(CharacterStats.prototype);
+};
  
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
@@ -133,8 +131,8 @@ Humanoid.prototype = Object.create(CharacterStats.prototype);
   console.log(`Swordsman's Team: ` + swordsman.team); // The Round Table
   console.log(`Mage's weapon: ` + mage.weapons); // Staff of Shamalama
   console.log(`Archer's Language: ` + archer.language); // Elvish
-  //console.log(archer.greet()); // Lilith offers a greeting in Elvish.
-  //console.log(mage.takeDamage()); // Bruce took damage.
+  console.log(archer.greet()); // Lilith offers a greeting in Elvish.
+  console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 
 
