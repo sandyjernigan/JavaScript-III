@@ -33,6 +33,16 @@
   * should inherit destroy() from GameObject's prototype
 */
 
+  function CharacterStats(attributes){
+    this.healthPoints = attributes.healthPoints
+  }
+
+  CharacterStats.prototype.takeDamage = function() {
+    return `${this.name} took damage.`
+  }
+
+  CharacterStats.prototype = Object.create(GameObject.prototype);
+
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
   * team
@@ -42,6 +52,17 @@
   * should inherit destroy() from GameObject through CharacterStats
   * should inherit takeDamage() from CharacterStats
 */
+
+function Humanoid(attributes){
+
+  this.team = attributes.team,
+  this.weapons = attributes.weapons,
+  this.language = attributes.language,
+}
+
+Humanoid.prototype.greet = function() {
+  return `${this.name} offers a greeting in ${this.name}.`
+}
 
 /*
   dimensions: {
