@@ -62,7 +62,7 @@ function Humanoid(attributes){
 }
 
 Humanoid.prototype.greet = function() {
-  return `${this.name} offers a greeting in ${this.name}.`
+  return `${this.name} offers a greeting in ${this.language}.`;
 }
 
 Humanoid.prototype = Object.create(CharacterStats.prototype);
@@ -125,15 +125,16 @@ Humanoid.prototype = Object.create(CharacterStats.prototype);
     language: 'Elvish',
   });
 
-  console.log(mage.createdAt); // Today's date
-  console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
-  console.log(swordsman.healthPoints); // 15
-  console.log(mage.name); // Bruce
-  console.log(swordsman.team); // The Round Table
-  console.log(mage.weapons); // Staff of Shamalama
-  console.log(archer.language); // Elvish
-  console.log(archer.greet()); // Lilith offers a greeting in Elvish.
-  console.log(mage.takeDamage()); // Bruce took damage.
+  console.log(`Mage was created: ` + mage.createdAt); // Today's date
+  console.log(`Archer Dimensions: ` + archer.dimensions); // { length: 1, width: 2, height: 4 }
+    console.log(`Length: ` + archer.dimensions.length + ` Width: ` + archer.dimensions.width + ` and Height: ` + archer.dimensions.height);
+  console.log(`Swordsman's Healthpoints: ` + swordsman.healthPoints); // 15
+  console.log(`Mage's name: ` + mage.name); // Bruce
+  console.log(`Swordsman's Team: ` + swordsman.team); // The Round Table
+  console.log(`Mage's weapon: ` + mage.weapons); // Staff of Shamalama
+  console.log(`Archer's Language: ` + archer.language); // Elvish
+  //console.log(archer.greet()); // Lilith offers a greeting in Elvish.
+  //console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 
 
