@@ -153,7 +153,14 @@ Humanoid.prototype.greet = function() {
   
     function attack(person, damageDone) {
       person.healthPoints = person.healthPoints - damageDone;
-      console.log(`${person.name} now has ${person.healthPoints} health.`)
+      if (person.healthPoints < 1) {
+        console.log(`${person.name} has been defeated.`);
+        person.destroy();
+        return false // false if not defeated
+      } else {
+        console.log(`${person.name} now has ${person.healthPoints} health.`);
+        return true // true. Stop attacking it's dead.
+      }
     }
 
     Hero.prototype.lightsRevenge = function(person) {
@@ -207,5 +214,10 @@ Humanoid.prototype.greet = function() {
     });
 
     console.log(`One day our hero, ${knight.name}, is attacked by ${wraith.name}.`);
-    attack(knight, wraith.howlingShards());
-    attack(wraith, knight.lightsRevenge());
+
+    while (knight.healthPoints > 0 && wraith.healthPoints > 0) {
+      if (attack(knight, wraith.howlingShards())) {
+        attack(wraith, knight.lightsRevenge());
+      }
+    }
+  
